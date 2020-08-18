@@ -1,20 +1,21 @@
 import React from "react";
+import { StatusBar } from "react-native";
+import styled from "styled-components";
 
-import { View, Text, StyleSheet } from "react-native";
-
-export default function HomeScreen() {
+export default HomeScreen = () => {
     return (
-        <View style={styles.container}>
-            <Text>Home Screen</Text>
-        </View>
+        <Container>
+            <StatusBar barStyle="light-content" />
+
+            <Header></Header>
+
+        </Container>
     );
-}
+};
 
-const styles = StyleSheet.create({
+const Container = styled.SafeAreaView`
+            flex: 1
+            background-color: #343434;
+`;
 
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-});
+const Header = styled.View``;
