@@ -3,6 +3,7 @@ import { StatusBar } from "react-native";
 import styled from "styled-components";
 import Text from "../Text";
 import categoryList from "../../categories";
+import games from "../../gameData";
 
 export default HomeScreen = () => {
 
@@ -11,6 +12,14 @@ export default HomeScreen = () => {
     const changeCategory = (category) => {
         setSelectedCategory(category);
     };
+
+    const GameItem = (game) => {
+        return (
+            <Game>
+                <GameCover source={game.cover} />
+            </Game>
+        )
+    }
 
     return (
         <Container>
@@ -35,11 +44,22 @@ export default HomeScreen = () => {
                 {categoryList.map((category, index) => {
                     return (
                         <Category key={index} onPress={() => changeCategory(category)} >
-                            <CategoryName selected={selectedCategory === category ? true : false}>{category}</CategoryName>
+                            <CategoryName selected={selectedCategory === category ? true : false}>{category}
+                        </CategoryName>
+                        {selectedCategory === category && <CategoryDot />}
                         </Category>
                     )
                 })}
             </Categories>
+
+            <Games
+                data={games.filter((game) => {
+                    return game.category.includes(selectedCategory) || selectedCategory === "All";
+                })}
+                keyExtractor={(item) => String(item.id)}
+                renderItem={({ item }) => GameItem(item)}
+                // ref={gamesRef}
+            />
         </Container>
     );
 };
@@ -76,3 +96,14 @@ const CategoryName = styled(Text)`
     color: ${(props) => (props.selected ? "#819ee5" : "#9a9a9a")};
     font-weight: ${(props) => (props.selected ? "700" : "500")};
 `;
+
+const CategoryDot = styled.View`
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #819ee5;
+`;
+
+const Games = styled.FlatList``;
+const Game = styled.TouchableOpacity``;
+const GameCover = styled.Image``;
