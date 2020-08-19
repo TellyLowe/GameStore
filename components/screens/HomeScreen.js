@@ -17,6 +17,15 @@ export default HomeScreen = () => {
         return (
             <Game>
                 <GameCover source={game.cover} />
+                <GameInfo backgroundColor={game.backgroundColor}>
+                    <GameImage source={game.cover} />
+                    <GameTitle>
+                        <Text medium bold>
+                            {game.title}
+                        </Text>
+                        <Text small>{game.teaser}</Text>
+                    </GameTitle>
+                </GameInfo>
             </Game>
         )
     }
@@ -104,6 +113,32 @@ const CategoryDot = styled.View`
     background-color: #819ee5;
 `;
 
-const Games = styled.FlatList``;
-const Game = styled.TouchableOpacity``;
-const GameCover = styled.Image``;
+const Games = styled.FlatList`
+    margin-top: 32px;
+    flex: 1;
+`;
+
+const Game = styled.TouchableOpacity`
+    margin-bottom: 32px;
+`;
+const GameCover = styled.Image`
+    height: 300px;
+    width: 100%;
+`;
+
+const GameInfo = styled.View`
+    margin: -50px 16px 0 16px;
+    padding: 16px;
+    border-radius: 12px;
+    flex-direction: row;
+    align-items: center;
+`;
+const GameImage = styled.Image`
+    width: 50px;
+    height: 40px;
+    border-radius: 8px;
+
+`;
+const GameTitle = styled.View`
+    margin: 0 24px;
+`;

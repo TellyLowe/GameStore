@@ -8,7 +8,7 @@ export default games = [
         rating: 4.5,
         category: ["Action", "Indie"],
         age: "12+",
-        cover: require("./assets/un1.webp"),
+        cover: require("./assets/un1.jpg"),
         screenshots: [
             require("./assets/un2.png"),
             require("./assets/un3.jpg"),
