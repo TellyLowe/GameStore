@@ -7,8 +7,8 @@ export default TextStyle = ({ ...props }) => {
 };
 
 const Text = styled.Text`
-    font-family: "Avenir Next";
-    color: ${(props)} => props.color ?? "#ffffff"};
+    /* font-family: "Bangers"; */
+    color: ${(props) => props.color ?? "#ffffff"};
         ${({ title, large, medium, small }) => {
             switch (true) {
                 case title:
@@ -27,11 +27,11 @@ const Text = styled.Text`
     ${({ light, bold, heavy }) => {
         switch (true) {
             case light:
-                return `font-weight: 200px`;
+                return `font-weight: 200`;
             case bold:
-                return `font-weight: 600px`;
+                return `font-weight: 600`;
             case heavy:
-                return `font-weight: 700px`;
+                return `font-weight: 700`;
             
             default:
                 return `font-weight: 400`;
@@ -44,8 +44,6 @@ const Text = styled.Text`
                 return `text-align: center`;
             case right:
                 return `text-align: right`;
-            case heavy:
-                return `font-weight: 700px`;
             
             default:
                 return `text-align: left`;
