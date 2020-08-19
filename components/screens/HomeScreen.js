@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { StatusBar } from "react-native";
 import styled from "styled-components";
 import Text from "../Text";
@@ -8,8 +8,10 @@ import games from "../../gameData";
 export default HomeScreen = () => {
 
     const [selectedCategory, setSelectedCategory] = useState("All");
+    const gamesRef = useRef();
 
     const changeCategory = (category) => {
+        gamesRef.current.scrollToOffset({ x: 0, y: 0 });
         setSelectedCategory(category);
     };
 
@@ -67,7 +69,7 @@ export default HomeScreen = () => {
                 })}
                 keyExtractor={(item) => String(item.id)}
                 renderItem={({ item }) => GameItem(item)}
-                // ref={gamesRef}
+                ref={gamesRef}
             />
         </Container>
     );
