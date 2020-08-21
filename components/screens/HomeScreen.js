@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import { StatusBar } from "react-native";
 import styled from "styled-components";
+
 import Text from "../Text";
 import categoryList from "../../categories";
 import games from "../../gameData";
 
-export default HomeScreen = () => {
+export default HomeScreen = ({navigation}) => {
 
     const [selectedCategory, setSelectedCategory] = useState("All");
     const gamesRef = useRef();
@@ -17,7 +18,7 @@ export default HomeScreen = () => {
 
     const GameItem = (game) => {
         return (
-            <Game>
+            <Game onPress={() => navigation.navigate("GameScreen", { game: game })}>
                 <GameCover source={game.cover} />
                 <GameInfo backgroundColor={game.backgroundColor}>
                     <GameImage source={game.cover} />
@@ -29,8 +30,8 @@ export default HomeScreen = () => {
                     </GameTitle>
                 </GameInfo>
             </Game>
-        )
-    }
+        );
+    };
 
     return (
         <Container>
@@ -123,6 +124,7 @@ const Games = styled.FlatList`
 const Game = styled.TouchableOpacity`
     margin-bottom: 32px;
 `;
+
 const GameCover = styled.Image`
     height: 300px;
     width: 100%;
